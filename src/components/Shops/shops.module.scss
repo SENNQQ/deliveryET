@@ -1,0 +1,62 @@
+.select__shops{
+  display: grid;
+  grid-template: 1fr/1fr;
+  grid-gap: 20px;
+
+  &_title{
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .choose__block{
+    display: grid;
+    grid-template: 1fr/1fr;
+    grid-gap: 15px;
+
+    &_item{
+      text-align: center;
+      position: relative;
+
+      &__image_wrapper{
+        cursor: pointer;
+      }
+      &__image{
+        width: 100px;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-size: 100%;
+        z-index: 0;
+        height: 100px;
+        -webkit-mask-image: url('../../img/partners-mask.svg');
+      }
+
+      &__title{
+        z-index: 1;
+        position: relative;
+        top: -19px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #000000;
+        line-height: 20px;
+        margin: 0;
+        white-space: nowrap;
+        min-height: 28px;
+      }
+
+      &__light{
+        position: relative;
+        background: #ffc244;
+        border-radius: 8px;
+        padding: 5px 12px;
+        z-index: 3;
+        display: table;
+        margin: -4px auto 0;
+      }
+
+    }
+  }
+}
+
+.select__shops_padding{
+  padding: 15px;
+}
