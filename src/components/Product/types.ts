@@ -5,4 +5,5 @@ export type productItemType = {
     weight: number,
     description: string,
     price: number,
+    count:number
 }

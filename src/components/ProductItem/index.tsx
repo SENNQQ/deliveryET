@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useMemo} from 'react';
 import ter from '../../img/500_500_1649768756Монтажнаяобласть5.jpg'
 import CountProduct from "../CountProduct";
 import st from './productItem.module.scss';
@@ -10,13 +10,25 @@ const ProductItem:FC<{productItem:productItemType[]}> = ({productItem}) => {
 
     const dispatch = useAppDispatch();
 
-    const addToCartShop = (item:productItemType):void =>{
+    const refs = useMemo(() => productItem.map(() => React.createRef<HTMLInputElement>()), []);
+
+    // пофиксить ошибку
+    const addToCartShop = (item:productItemType, indexRef:number):void =>{
+        console.log(refs[indexRef]);
+        console.log(parseInt(refs[indexRef].current!.value));
+        console.log(item);
+        item.count = parseInt(refs[indexRef].current!.value);
         dispatch(addItem(item));
     }
 
+    useEffect(() => {
+        // @ts-ignore
+        refs[0].current.focus();
+    }, [productItem]);
+
     return (
         <>
-            {productItem.map((item) => (
+            {productItem.map((item,index) => (
                 <div className={st.product__item} key={item.id}>
                     <div className={st.product__item__block}>
                         <div className={st.product__item__block__image}>
@@ -38,11 +50,11 @@ const ProductItem:FC<{productItem:productItemType[]}> = ({productItem}) => {
                                 {item.price} UAH
                             </div>
                             <div className={st.product__item_line_count}>
-                                <CountProduct catalog={true}/>
+                                <CountProduct countItem={item.count} catalog={true} refInput={refs[index]}/>
                             </div>
                         </div>
                         <div className="product__item_btn_wrapper">
-                            <div className={st.product__item_btn} onClick={()=>addToCartShop(item)}>
+                            <div className={st.product__item_btn} onClick={()=>addToCartShop(item, index)}>
                                 <span>Добавить в корзину</span>
                             </div>
                         </div>

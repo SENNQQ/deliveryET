@@ -4,7 +4,7 @@ import CountProduct from "../CountProduct";
 import st from './orderItem.module.scss';
 import cn from "classnames";
 import {shopCartItem} from "../../store/shopCart/types";
-import {deleteItem} from "../../store/shopCart/slice";
+import {changeCountItem, deleteItem} from "../../store/shopCart/slice";
 import {useAppDispatch} from "../../store/hook";
 
 
@@ -17,6 +17,9 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
         orderItem.map(item=>item.id!==idItem);
     }
 
+    const changeCountItemCart = (idItem:shopCartItem, newCount:number):void =>{
+        dispatch(changeCountItem([idItem, newCount]));
+    }
 
     return (
         <>
@@ -37,7 +40,8 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
                         </div>
                         <div
                             className={cn(st.content_order__row__minus_plus_number, st.content_order__row_flex_center)}>
-                            <CountProduct/>
+                            <CountProduct countItem={item.count}
+                                          changeCountItem={(newCount)=>changeCountItemCart(item, newCount)}/>
                         </div>
                         <div className={cn(st.content_order__row__delete, st.content_order__row_flex_center)}>
                             <span className="delete" onClick={()=>deleteItemFromCart(item.id)}></span>

@@ -10,11 +10,23 @@ const shopCart = createSlice({
     initialState,
     reducers: {
         addItem(state, {payload}: PayloadAction<shopCartItem>) {
-            state.CartItems = [...state.CartItems, payload];
-            localStorage.setItem('ProductItems', JSON.stringify(state.CartItems));
+            const indexExist = state.CartItems.find((item) => item.id === payload.id);
+            if(indexExist){
+                const indexItem = state.CartItems.findIndex((item) => item.id === payload.id);
+                state.CartItems[indexItem].count += payload.count;
+                localStorage.setItem('ProductItems', JSON.stringify(state.CartItems));
+            }
+            else{
+                state.CartItems = [...state.CartItems, payload];
+                localStorage.setItem('ProductItems', JSON.stringify(state.CartItems));
+            }
         },
         initCart(state) {
-            state.CartItems = JSON.parse(localStorage.getItem("ProductItems") || "");
+           try {
+               state.CartItems = JSON.parse(localStorage.getItem("ProductItems") || "");
+           }catch (e) {
+              localStorage.setItem("ProductItems", JSON.stringify(state.CartItems));
+           }
         },
         deleteItem(state, {payload}: PayloadAction<number>) {
             let cartItem = JSON.parse(localStorage.getItem("ProductItems") || "");
@@ -26,9 +38,14 @@ const shopCart = createSlice({
                 CartItems: [...state.CartItems].filter((item) => item.id !== payload)
             };
         },
+        changeCountItem(state, {payload}: PayloadAction<[shopCartItem, number]>) {
+            const indexItem = state.CartItems.findIndex((item) => item.id === payload[0].id);
+            state.CartItems[indexItem].count = payload[1];
+            localStorage.setItem('ProductItems', JSON.stringify(state.CartItems));
+        },
     },
 });
 
-export const {addItem, deleteItem, initCart} = shopCart.actions;
+export const {addItem, deleteItem, initCart, changeCountItem} = shopCart.actions;
 
 export default shopCart.reducer;

@@ -6,7 +6,7 @@ export type shopCartItem = {
     weight?: number,
     description?: string,
     price: number,
-    count?:number
+    count:number
 }
 
 export type shopCartItems = {

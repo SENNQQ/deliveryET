@@ -10,6 +10,7 @@ const productItem:productItemType[] = [
         weight: 250,
         description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
         price: 143,
+        count:1
     }, {
         id: 2,
         image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
@@ -17,6 +18,7 @@ const productItem:productItemType[] = [
         weight: 250,
         description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
         price: 143,
+        count:1
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ const productItem:productItemType[] = [
         weight: 250,
         description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
         price: 143,
+        count:1
     },
     {
         id: 4,
@@ -33,6 +36,7 @@ const productItem:productItemType[] = [
         weight: 250,
         description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
         price: 143,
+        count:1
     },
     {
         id: 5,
@@ -41,6 +45,7 @@ const productItem:productItemType[] = [
         weight: 250,
         description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
         price: 143,
+        count:1
     },
     {
         id: 6,
@@ -49,6 +54,7 @@ const productItem:productItemType[] = [
         weight: 250,
         description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
         price: 143,
+        count:1
     },
     {
         id: 7,
@@ -57,6 +63,7 @@ const productItem:productItemType[] = [
         weight: 250,
         description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
         price: 143,
+        count:1
     },
 ];
 
