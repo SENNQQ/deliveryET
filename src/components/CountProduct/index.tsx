@@ -1,37 +1,46 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import st from './countProduct.module.scss';
+import cn from "classnames";
 
-const CountProduct:FC = () => {
+const CountProduct: FC<{ catalog?: boolean }> = ({catalog}) => {
+
+    const [count, setCount] = useState(1);
+
+    const handleAddOne = () => {
+        if(count === 99)
+            return
+        setCount(count + 1);
+    }
+
+    const handleSubtractOne = () => {
+        if(count === 1)
+            return
+        setCount(count - 1);
+    }
+
+    const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+        let newValue = e.currentTarget.value;
+        if (parseInt(newValue) <= 1 || isNaN(parseInt(newValue))) {
+            setCount(1);
+        } else {
+            setCount(parseInt(newValue));
+        }
+
+    }
+
     return (
-
         <>
-            <span className={["cart_minus", st.cart_symbol].join(' ')}>-</span>
-            <span className={["cart_input", st.cart_count].join(' ')}>
-                               <input type="text" defaultValue={1}/>
-                           </span>
-            <span className={["cart_plus", st.cart_symbol].join(' ')}>+</span>
+            <span className={cn({cart_minus: catalog}, st.cart_symbol)}
+                  onClick={handleSubtractOne}>-</span>
+            <span className={cn({cart_input: catalog}, st.cart_count)}>
+                               <input type="text"
+                                      value={count}
+                                      onChange={handleOnChange}
+                               />
+            </span>
+            <span className={cn({cart_plus: catalog}, st.cart_symbol)}
+                  onClick={handleAddOne}>+</span>
         </>
-        // <div className={st.product__item_line_count}>
-        //     <div className={st.minus_plus_number}>
-        //         <div className={[st.btnmp, st.minus].join(' ')}>
-        //             <svg width=".7291vw" height=".7291vw" viewBox="0 0 14 14" fill="none"
-        //                  xmlns="http://www.w3.org/2000/svg">
-        //                 <rect x="14" y="6" width="2" height="14" rx="1"
-        //                       transform="rotate(90 14 6)" fill="#B4BDC6"></rect>
-        //             </svg>
-        //         </div>
-        //         <div className={st.field_number}>
-        //             1
-        //         </div>
-        //         <div className={[st.btnmp, st.plus].join(' ')}>
-        //             <svg width=".7291vw" height=".7291vw" viewBox="0 0 14 14" fill="none"
-        //                  xmlns="http://www.w3.org/2000/svg">
-        //                 <rect x="6.00098" width="2" height="14" rx="1" fill="#B4BDC6"></rect>
-        //                 <rect x="14" y="6.00098" width="2" height="14" rx="1"
-        //                       transform="rotate(90 14 6.00098)" fill="#B4BDC6"></rect></svg>
-        //         </div>
-        //     </div>
-        // </div>
     );
 };
 
