@@ -4,6 +4,7 @@ import Shops from "../components/Shops";
 import Product from "../components/Product";
 
 const Catalog:FC = () => {
+
     return (
         <div className="content">
             <div className="content_grid">

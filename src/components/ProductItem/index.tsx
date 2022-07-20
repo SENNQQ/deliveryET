@@ -3,8 +3,17 @@ import ter from '../../img/500_500_1649768756Монтажнаяобласть5.j
 import CountProduct from "../CountProduct";
 import st from './productItem.module.scss';
 import {productItemType} from "../Product/types";
+import {useAppDispatch} from "../../store/hook";
+import {addItem} from "../../store/shopCart/slice";
 
 const ProductItem:FC<{productItem:productItemType[]}> = ({productItem}) => {
+
+    const dispatch = useAppDispatch();
+
+    const addToCartShop = (item:productItemType):void =>{
+        dispatch(addItem(item));
+    }
+
     return (
         <>
             {productItem.map((item) => (
@@ -33,7 +42,7 @@ const ProductItem:FC<{productItem:productItemType[]}> = ({productItem}) => {
                             </div>
                         </div>
                         <div className="product__item_btn_wrapper">
-                            <div className={st.product__item_btn}>
+                            <div className={st.product__item_btn} onClick={()=>addToCartShop(item)}>
                                 <span>Добавить в корзину</span>
                             </div>
                         </div>

@@ -32,72 +32,6 @@
     box-shadow: 0 6px 15px rgb(0 0 0 / 15%);
     width: 100%;
     padding: 25px 0 25px 25px;
-
-    &__row{
-      display: grid;
-      grid-template: 1fr/max-content 1fr 25% 15% 5%;
-      grid-gap: 20px;
-
-      &__image{
-        overflow: hidden;
-        float: left;
-        width: 150px;
-        height: 150px;
-        line-height: 110px;
-        text-align: center;
-        border-radius: 0.26vw;
-      }
-
-      &__image img{
-        width: 100%;
-        transition: all 0.2s ease;
-      }
-
-      &__title__grid{
-        display: grid;
-        grid-template: max-content 1fr/1fr;
-      }
-      &__title{
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 29px;
-      }
-      &__subtitle{
-        font-size: 15px;
-        line-height: 22px;
-      }
-
-      &__price{
-        vertical-align: middle;
-        font-size: 35px;
-        min-width: 80px;
-        line-height: 19px;
-        text-align: center;
-      }
-
-
-      &_flex_center{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-
-      &__delete{
-        width: 27px;
-        cursor: pointer;
-
-        span{
-          display: inline-block;
-          vertical-align: middle;
-          width: 20px;
-          height: 20px;
-          background: url('../img/cart-delete.png') 0 0 no-repeat;
-          transition: all .3s linear;
-        }
-      }
-    }
-
   }
 
   &_receiving{
@@ -227,6 +161,24 @@
       }
     }
 
+  }
+}
+
+.image_clear{
+  margin-top: 24vh;
+  text-align: center;
+
+  img{
+    width: 7.864vw;
+    height: 9.28vw;
+    margin-bottom: 0.7291vw;
+  }
+
+  .text_clear{
+    font-weight: 400;
+    font-size: 1.145vw;
+    line-height: 1.77vw;
+    color: #212529;
   }
 }
 
