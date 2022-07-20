@@ -1,0 +1,97 @@
+.content {
+  width: 100%;
+  height: auto;
+
+  &_block{
+    display: grid;
+    grid-template: 1fr/1fr;
+    grid-gap: 25px;
+
+    &__title{
+      font-size: 1.77vw;
+      line-height: 2.187vw;
+      color: #212529;
+      font-weight: bold;
+      display: block;
+      margin: 0 0 1.77vw;
+      padding-left: 25px;
+    }
+
+  }
+
+  &_order{
+    display: grid;
+    grid-template: 1fr/1fr;
+    grid-gap: 25px;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 15%);
+    width: 100%;
+    padding: 25px 0 25px 25px;
+
+    &__row{
+      display: grid;
+      grid-template: 1fr/max-content 1fr 25% 15% 5%;
+      grid-gap: 20px;
+
+      &__image{
+        overflow: hidden;
+        float: left;
+        width: 150px;
+        height: 150px;
+        line-height: 110px;
+        text-align: center;
+        border-radius: 0.26vw;
+      }
+
+      &__image img{
+        width: 100%;
+        transition: all 0.2s ease;
+      }
+
+      &__title__grid{
+        display: grid;
+        grid-template: max-content 1fr/1fr;
+      }
+      &__title{
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+      }
+      &__subtitle{
+        font-size: 15px;
+        line-height: 22px;
+      }
+
+      &__price{
+        vertical-align: middle;
+        font-size: 35px;
+        min-width: 80px;
+        line-height: 19px;
+        text-align: center;
+      }
+
+
+      &_flex_center{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+
+      &__delete{
+        width: 27px;
+        cursor: pointer;
+
+        span{
+          display: inline-block;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+          background: url('../img/cart-delete.png') 0 0 no-repeat;
+          transition: all .3s linear;
+        }
+      }
+    }
+
+  }
+}
+

@@ -110,10 +110,23 @@
           }
 
           &_count{
-            width: 6.2vw;
-            display: inline-block;
-            text-align: right;
-            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .cart_minus, .cart_plus{
+              width: 30px;
+              height: 30px;
+              font-size: 1.7em;
+              line-height: 27px;
+            }
+
+            .cart_input input{
+              float:none;
+              width: 30px;
+              height: 30px;
+              font-size: 18px;
+            }
           }
         }
 
@@ -128,6 +141,7 @@
           text-align: center;
           transition: all 0.2s ease;
           justify-content: center;
+          cursor: pointer;
         }
 
         &_btn span{
@@ -141,49 +155,4 @@
     }
 
   }
-}
-
-.product__item_line_count .minus_plus_number {
-  box-sizing: border-box;
-  height: 2.187vw;
-  width: 100%;
-}
-
-.minus_plus_number{
-  border: 1px solid #e0e8f0;
-  border-radius: 0.208vw;
-  background-color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.minus_plus_number .btnmp:hover {
-  cursor: pointer;
-}
-
-.minus_plus_number .btnmp:hover svg path, .minus_plus_number .btnmp:hover svg rect {
-  fill: #33b3ff;
-}
-
-.minus_plus_number .minus{
-  width: 2.187vw;
-  text-align: center;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom-left-radius: 0.156vw;
-  border-top-left-radius: 0.156vw;
-}
-
-.minus_plus_number .plus{
-  width: 2.187vw;
-  text-align: center;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom-right-radius: 0.156vw;
-  border-top-right-radius: 0.156vw;
 }
