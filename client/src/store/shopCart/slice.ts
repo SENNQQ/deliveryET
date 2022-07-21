@@ -32,7 +32,6 @@ const shopCart = createSlice({
             let cartItem = JSON.parse(localStorage.getItem("ProductItems") || "");
             cartItem = cartItem.filter((item:any)=>parseInt(item.id)!==payload);
             localStorage.setItem('ProductItems', JSON.stringify(cartItem));
-
             return {
                 ...state,
                 CartItems: [...state.CartItems].filter((item) => parseInt(item._id) !== payload)

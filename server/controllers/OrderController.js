@@ -2,10 +2,12 @@ import OrderModel from '../models/Order.js';
 
 export const create = async (req, res) => {
     try {
+        console.log(req.body);
         const product = new OrderModel({
             name: req.body.name,
             phone: req.body.phone,
             email: req.body.email,
+            cart:req.body.cart,
             city: req.body.city,
             street: req.body.street,
             house: req.body.house,

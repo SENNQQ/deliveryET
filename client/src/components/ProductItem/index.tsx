@@ -12,6 +12,7 @@ const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
     const dispatch = useAppDispatch();
 
     const refs = useMemo(() => productItem.map(() => React.createRef<HTMLInputElement>()), []);
+    // const shopCart = useAppSelector(state => state.shopCart.CartItems);
 
     const addToCartShop = (item: productType, indexRef: number): void => {
         item = Object.assign({}, item, {count: parseInt(refs[indexRef].current!.value)});

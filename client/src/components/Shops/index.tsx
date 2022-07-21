@@ -5,14 +5,20 @@ import taco from "../../img/akivf28yymtqggy5cxzl.avif";
 import st from './shops.module.scss';
 import {fetchAllProduct, fetchProductBrand} from "../../store/product/slice";
 import {useAppDispatch} from "../../store/hook";
+import cn from "classnames";
 
-
-const Shops:FC = () => {
+// Сделал магазины в БД и получать их оттуда
+const Shops: FC<{
+    onHandlerCLick: (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => void,
+    onHandlerAllStore: () => void,
+    store: string[],
+    selectStore: string
+}> = ({onHandlerCLick, onHandlerAllStore, store, selectStore}) => {
 
     const dispatch = useAppDispatch();
 
-    const fetchProductsBrand = (imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-        dispatch(fetchProductBrand(imgCLick.currentTarget.alt));
+    const fetchProductsBrand = (img:React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+        dispatch(fetchProductBrand(img.currentTarget.alt));
     }
 
     const fetchProductsAll = () => {
@@ -29,36 +35,54 @@ const Shops:FC = () => {
                 <div className={st.choose__block_item}>
                     <div className={st.choose__block_item__image_wrapper}>
                         <img src={mc} alt="mc"
-                             className={st.choose__block_item__image}
-                             onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=>fetchProductsBrand(imgCLick)}
+                             className={cn(st.choose__block_item__image,
+                                 {"filterSelect":selectStore !== 'all' && selectStore !== 'mc'})}
+                             onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=>{
+                                 fetchProductsBrand(imgCLick);
+                                 onHandlerCLick(imgCLick);
+                             }}
                         />
                     </div>
                     <h3 className={st.choose__block_item__title}>
-                        <span className={st.choose__block_item__light}>McDonald's</span>
+                        <span className={cn(st.choose__block_item__light,
+                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'mc'})}>McDonald's</span>
                     </h3>
                 </div>
                 <div className={st.choose__block_item}>
                     <div className={st.choose__block_item__image_wrapper}>
                         <img src={burgerKing} alt="bk"
-                             className={st.choose__block_item__image}
-                             onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=>fetchProductsBrand(imgCLick)}/>
+                             className={cn(st.choose__block_item__image,
+                                 {"filterSelect": selectStore !== 'all' && selectStore !== 'bk'})}
+                             onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=> {
+                                 fetchProductsBrand(imgCLick);
+                                 onHandlerCLick(imgCLick);
+                             }}/>
                     </div>
                     <h3 className={st.choose__block_item__title}>
-                        <span className={st.choose__block_item__light}>Burger king</span>
+                        <span className={cn(st.choose__block_item__light,
+                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'bk'})}>Burger king</span>
                     </h3>
                 </div>
                 <div className={st.choose__block_item}>
                     <div className={st.choose__block_item__image_wrapper}>
                         <img src={taco} alt="taco"
-                             className={st.choose__block_item__image}
-                             onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=>fetchProductsBrand(imgCLick)}/>
+                             className={cn(st.choose__block_item__image,
+                                 {"filterSelect": selectStore !== 'all' && selectStore !== 'taco'})}
+                             onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=>{
+                                 fetchProductsBrand(imgCLick);
+                                 onHandlerCLick(imgCLick);
+                             }}/>
                     </div>
                     <h3 className={st.choose__block_item__title}>
-                        <span className={st.choose__block_item__light}>taco</span>
+                        <span className={cn(st.choose__block_item__light,
+                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'taco'})}>taco</span>
                     </h3>
                 </div>
                 <div className={st.choose__block_item}>
-                    <h3 className={st.choose__block_item__title}  onClick={()=>fetchProductsAll()}>
+                    <h3 className={st.choose__block_item__title}  onClick={(e)=>{
+                        fetchProductsAll();
+                        onHandlerAllStore();
+                    }}>
                         <span className={st.choose__block_item__light}>Все магазины</span>
                     </h3>
                 </div>

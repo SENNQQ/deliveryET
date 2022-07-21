@@ -6,6 +6,10 @@ import {useAppSelector} from "../store/hook";
 import Order from "../components/Order";
 import clear from "../img/cart-empty.png";
 import {shopCartItem} from "../store/shopCart/types";
+import axios from "../axios";
+import {AxiosError} from "axios";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 type receivingForm = {
     name: string;
@@ -22,11 +26,22 @@ type receivingForm = {
 
 const ShopCart = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm<receivingForm>();
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<receivingForm>();
 
-    const onSubmit: SubmitHandler<receivingForm> = data => {
-        data.cart = cartItem;
-        console.log(data);
+    const onSubmit: SubmitHandler<receivingForm> = async dataForm => {
+        dataForm.cart = cartItem;
+        try {
+            const {data} = await axios.post<{ success: boolean, message: string }>('/api/order', dataForm);
+            if (data.success) {
+                reset();
+                toast.success(data.message);
+            } else {
+                toast.success(data.message);
+            }
+        } catch (e) {
+            const error = e as AxiosError<{ msg: string, param: 'email' | 'phone' | 'address' | 'studyPlace' | 'facebook' | 'instagram' | 'social' }[]>;
+            console.log(error);
+        }
     };
 
     const cartItem = useAppSelector(state => state.shopCart.CartItems);
@@ -302,6 +317,17 @@ const ShopCart = () => {
                 }
 
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

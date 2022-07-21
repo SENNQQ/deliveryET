@@ -1,0 +1,109 @@
+.selectBlock {
+  width: 300px;
+  height: 53px;
+  background-color: #fff;
+  border-radius: 25px;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transition: border-radius 0.2s ease-in-out;
+  position: relative;
+
+  &.opened {
+    border-radius: 25px 25px 0 0;
+
+    .selected {
+      &:before,
+      &:after {
+        width: 50%;
+      }
+
+      & span:after {
+        transform: rotate(180deg);
+      }
+    }
+
+    .dropdownBlock {
+      border-radius: 0 0 5px 5px;
+    }
+  }
+
+  .selected {
+    position: relative;
+    cursor: pointer;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      width: 0;
+      height: 1px;
+      background: #95B1D3;
+      transition: .3s;
+    }
+
+    &:before {
+      left: 50%;
+    }
+
+    &:after {
+      right: 50%;
+    }
+
+    span {
+      -webkit-line-clamp: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: calc(100% - 60px);
+      height: 27px;
+
+      &:after {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        content: "";
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+  }
+}
+
+.dropdown {
+  &Block {
+    transition: border-radius 0.2s ease-in-out;
+    width: inherit;
+    height: 0;
+    overflow: hidden;
+    background-color: inherit;
+    position: absolute;
+    top: 49px;
+    z-index: 1;
+    border-radius: 25px 25px 0 25px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+
+    //&.opened {
+    //  //overflow-y: auto;
+    //  border-radius: 0 0 5px 5px;
+    //}
+  }
+
+  &Item {
+    padding: 5px 15px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f5f8fb;
+    }
+  }
+}

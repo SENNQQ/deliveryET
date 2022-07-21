@@ -6,6 +6,7 @@ import {useAppDispatch} from "./store/hook";
 import {useMemo} from "react";
 import OrderSearch from "./pages/OrderSearch";
 import {fetchAllProduct} from "./store/product/slice";
+import {initCart} from "./store/shopCart/slice";
 
 const App = () => {
 
@@ -13,6 +14,7 @@ const App = () => {
 
     useMemo(()=>{
         dispatch(fetchAllProduct());
+        dispatch(initCart());
     },[]);
 
     return (
