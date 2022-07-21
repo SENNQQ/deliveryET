@@ -1,16 +1,25 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-.gitignore
 
 # dependencies
+/.idea
+workspace.xml
+/client/.idea
+client/node_modules
+client/.idea
+/server/node_modules
+client/.pnp
+client/.pnp.js
 /node_modules
 /.pnp
 .pnp.js
 
 # testing
+client/coverage
 /coverage
 
 # production
+client/build
 /build
 
 # misc
@@ -19,12 +28,15 @@
 .env.development.local
 .env.test.local
 .env.production.local
+client/.DS_Store
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.idea/modules.xml
-/.idea/delivery.iml
-/.idea/workspace.xml
-/.idea/vcs.xml
-/.idea/inspectionProfiles/Project_Default.xml
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
