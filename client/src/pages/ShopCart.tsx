@@ -11,7 +11,7 @@ import {AxiosError} from "axios";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-type receivingForm = {
+export type receivingForm = {
     name: string;
     phone: string;
     email: string;

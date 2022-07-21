@@ -19,7 +19,7 @@ export const fetchProductBrand = createAsyncThunk<shopCartItem[], string>('produ
             params:{store:brand}
         });
         return data.products;
-    });
+});
 
 const product = createSlice({
     name: 'user',
