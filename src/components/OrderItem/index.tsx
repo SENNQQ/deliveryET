@@ -36,7 +36,7 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
                             <div className={st.content_order__row__subtitle}>{item.subTitle}</div>
                         </div>
                         <div className={cn(st.content_order__row__price, st.content_order__row_flex_center)}>
-                            {item.price} ₴
+                            {item.price * item.count} ₴
                         </div>
                         <div
                             className={cn(st.content_order__row__minus_plus_number, st.content_order__row_flex_center)}>

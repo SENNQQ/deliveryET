@@ -12,12 +12,8 @@ const ProductItem:FC<{productItem:productItemType[]}> = ({productItem}) => {
 
     const refs = useMemo(() => productItem.map(() => React.createRef<HTMLInputElement>()), []);
 
-    // пофиксить ошибку
     const addToCartShop = (item:productItemType, indexRef:number):void =>{
-        console.log(refs[indexRef]);
-        console.log(parseInt(refs[indexRef].current!.value));
-        console.log(item);
-        item.count = parseInt(refs[indexRef].current!.value);
+        item = Object.assign({}, item, {count:parseInt(refs[indexRef].current!.value)});
         dispatch(addItem(item));
     }
 

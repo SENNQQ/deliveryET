@@ -26,12 +26,17 @@ const ShopCart = () => {
         console.log(data);
     };
 
-    const cartItemLength = useAppSelector(state => state.shopCart.CartItems.length);
+    const cartItem = useAppSelector(state => state.shopCart.CartItems);
+
+    // @ts-ignore
+    console.log(cartItem.reduce((total, item) => {
+        return total + item.count * item.price
+    }, 0));
 
     return (
         <div className="content">
             <div className="content_block">
-                {cartItemLength == 0 ?
+                {cartItem.length == 0 ?
                     <div className="image_clear">
                         <img src={clear} alt=""/>
                         <div className="text_clear">Тут пусто.</div>
@@ -272,13 +277,21 @@ const ShopCart = () => {
                                         <li>
                                             <div className="cart_check__left">Всего на сумму</div>
                                             <div className="cart_check__right">
-                                                <span>905</span> ₴
+                                                <span>
+                                                    {cartItem.reduce((total, item) => {
+                                                        return total + item.count * item.price
+                                                    }, 0)}
+                                                </span> ₴
                                             </div>
                                         </li>
                                         <li>
                                             <div className="cart_check__left orange">К оплате:</div>
                                             <div className="cart_check__right orange">
-                                                <span>905</span> ₴
+                                                <span>
+                                                    {cartItem.reduce((total, item) => {
+                                                        return total + item.count * item.price
+                                                    }, 0)}
+                                                </span> ₴
                                             </div>
                                         </li>
                                     </ul>
