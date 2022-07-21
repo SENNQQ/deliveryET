@@ -1,0 +1,16 @@
+.content_gridSearch {
+  display: grid;
+  grid-template: 1fr/20% 1fr;
+  grid-gap: 50px;
+}
+
+.content_search_gridItem{
+  display: grid;
+  grid-template: 1fr/1fr;
+  grid-gap: 20px;
+}
+
+.content_search__marginZero__fontWeightBold{
+  margin: 0;
+  font-weight: bold;
+}

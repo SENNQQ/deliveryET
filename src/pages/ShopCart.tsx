@@ -5,6 +5,7 @@ import cn from "classnames";
 import {useAppSelector} from "../store/hook";
 import Order from "../components/Order";
 import clear from "../img/cart-empty.png";
+import {shopCartItem} from "../store/shopCart/types";
 
 type receivingForm = {
     name: string;
@@ -16,6 +17,7 @@ type receivingForm = {
     apartment: string;
     floor: string;
     comment: string;
+    cart:shopCartItem[];
 }
 
 const ShopCart = () => {
@@ -23,20 +25,16 @@ const ShopCart = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<receivingForm>();
 
     const onSubmit: SubmitHandler<receivingForm> = data => {
+        data.cart = cartItem;
         console.log(data);
     };
 
     const cartItem = useAppSelector(state => state.shopCart.CartItems);
 
-    // @ts-ignore
-    console.log(cartItem.reduce((total, item) => {
-        return total + item.count * item.price
-    }, 0));
-
     return (
         <div className="content">
             <div className="content_block">
-                {cartItem.length == 0 ?
+                {cartItem.length === 0 ?
                     <div className="image_clear">
                         <img src={clear} alt=""/>
                         <div className="text_clear">Тут пусто.</div>

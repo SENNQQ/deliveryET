@@ -14,7 +14,6 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
 
     const deleteItemFromCart = (idItem:number):void =>{
         dispatch(deleteItem(idItem));
-        orderItem.map(item=>item.id!==idItem);
     }
 
     const changeCountItemCart = (idItem:shopCartItem, newCount:number):void =>{
@@ -24,7 +23,7 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
     return (
         <>
             {orderItem.map((item) => (
-                <div key={item.id}>
+                <div key={item._id}>
                     <div className={st.content_order__row}>
                         <div className={st.content_order__row__image}>
                             <img src={ter} alt="ter"/>
@@ -33,7 +32,7 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
                             <div className={st.content_order__row__title}>
                                 {item.title}
                             </div>
-                            <div className={st.content_order__row__subtitle}>{item.subTitle}</div>
+                            <div className={st.content_order__row__subtitle}>{item.subtitle}</div>
                         </div>
                         <div className={cn(st.content_order__row__price, st.content_order__row_flex_center)}>
                             {item.price * item.count} ₴
@@ -44,7 +43,7 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
                                           changeCountItem={(newCount)=>changeCountItemCart(item, newCount)}/>
                         </div>
                         <div className={cn(st.content_order__row__delete, st.content_order__row_flex_center)}>
-                            <span className="delete" onClick={()=>deleteItemFromCart(item.id)}></span>
+                            <span className="delete" onClick={()=>deleteItemFromCart(parseInt(item._id))}></span>
                         </div>
                     </div>
                     <hr/>

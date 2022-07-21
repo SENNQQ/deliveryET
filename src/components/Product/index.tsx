@@ -1,78 +1,17 @@
 import React from 'react';
 import ProductItem from "../ProductItem";
-import {productItemType} from './types';
-
-const productItem:productItemType[] = [
-    {
-        id: 1,
-        image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
-        title: 'Яичница с курицей и овощами гриль',
-        weight: 250,
-        description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
-        price: 143,
-        count:1
-    }, {
-        id: 2,
-        image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
-        title: 'Яичница с курицей и овощами гриль',
-        weight: 250,
-        description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
-        price: 143,
-        count:1
-    },
-    {
-        id: 3,
-        image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
-        title: 'Яичница с курицей и овощами гриль',
-        weight: 250,
-        description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
-        price: 143,
-        count:1
-    },
-    {
-        id: 4,
-        image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
-        title: 'Яичница с курицей и овощами гриль',
-        weight: 250,
-        description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
-        price: 143,
-        count:1
-    },
-    {
-        id: 5,
-        image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
-        title: 'Яичница с курицей и овощами гриль',
-        weight: 250,
-        description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
-        price: 143,
-        count:1
-    },
-    {
-        id: 6,
-        image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
-        title: 'Яичница с курицей и овощами гриль',
-        weight: 250,
-        description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
-        price: 143,
-        count:1
-    },
-    {
-        id: 7,
-        image: '../../img/500_500_1649768756Монтажнаяобласть5.jpg',
-        title: 'Яичница с курицей и овощами гриль',
-        weight: 250,
-        description: 'Яичница глазунья с куриным бедром, запеченным картофелем и приготовленными на гриле помидорами и грибами.',
-        price: 143,
-        count:1
-    },
-];
+import {useAppSelector} from "../../store/hook";
+import Loading from "../Loading";
 
 
 const Product = () => {
 
+    const product = useAppSelector(state => state.productState.product)
+    const StatusProduct = useAppSelector(state => state.productState.status)
+
     return (
         <div className="product_list">
-            <ProductItem productItem={productItem}/>
+            {StatusProduct === 'loading' ? <Loading/> :  <ProductItem productItem={product}/>}
         </div>
     );
 };

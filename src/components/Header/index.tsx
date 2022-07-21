@@ -18,7 +18,7 @@ const Header:FC = () => {
                         <Link className={st.navigation__parent_item} to="/shopCart">Корзина</Link>
                     </li>
                     <li className={st.navigation__parent}>
-                        <Link className={st.navigation__parent_item} to="/ETFood">Сравнение</Link>
+                        <Link className={st.navigation__parent_item} to="/OrderSearch">Проверка заказа</Link>
                     </li>
                 </ul>
             </nav>

@@ -1,12 +1,13 @@
 export type shopCartItem = {
-    id: number,
+    _id: string,
     image: string,
     title: string,
-    subTitle?: string,
-    weight?: number,
-    description?: string,
+    subtitle?:string,
+    weight: number,
+    description: string,
     price: number,
-    count:number
+    count:number,
+    store:string
 }
 
 export type shopCartItems = {

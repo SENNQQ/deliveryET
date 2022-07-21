@@ -10,9 +10,9 @@ const shopCart = createSlice({
     initialState,
     reducers: {
         addItem(state, {payload}: PayloadAction<shopCartItem>) {
-            const indexExist = state.CartItems.find((item) => item.id === payload.id);
+            const indexExist = state.CartItems.find((item) => item._id === payload._id);
             if(indexExist){
-                const indexItem = state.CartItems.findIndex((item) => item.id === payload.id);
+                const indexItem = state.CartItems.findIndex((item) => item._id === payload._id);
                 state.CartItems[indexItem].count += payload.count;
                 localStorage.setItem('ProductItems', JSON.stringify(state.CartItems));
             }
@@ -30,16 +30,16 @@ const shopCart = createSlice({
         },
         deleteItem(state, {payload}: PayloadAction<number>) {
             let cartItem = JSON.parse(localStorage.getItem("ProductItems") || "");
-            cartItem = cartItem.filter((item:any)=>item.id!==payload);
+            cartItem = cartItem.filter((item:any)=>parseInt(item.id)!==payload);
             localStorage.setItem('ProductItems', JSON.stringify(cartItem));
 
             return {
                 ...state,
-                CartItems: [...state.CartItems].filter((item) => item.id !== payload)
+                CartItems: [...state.CartItems].filter((item) => parseInt(item._id) !== payload)
             };
         },
         changeCountItem(state, {payload}: PayloadAction<[shopCartItem, number]>) {
-            const indexItem = state.CartItems.findIndex((item) => item.id === payload[0].id);
+            const indexItem = state.CartItems.findIndex((item) => item._id === payload[0]._id);
             state.CartItems[indexItem].count = payload[1];
             localStorage.setItem('ProductItems', JSON.stringify(state.CartItems));
         },
