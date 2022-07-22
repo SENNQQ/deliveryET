@@ -35,7 +35,7 @@ const OrderSearch:FC = () => {
             }
             else if(data.orders.length == 0){
                 reset();
-                toast.info('Заказ не найден');
+                toast.info('Заказ не найден. Телефон и почта должны совпадать. ');
             }
             else{
                 toast.success(data.message);

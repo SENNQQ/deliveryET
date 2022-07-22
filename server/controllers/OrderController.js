@@ -32,13 +32,12 @@ export const getAll = async (req, res) => {
     try {
         if (req.query.phone && req.query.email) {
             const orders = await OrderModel.find({phone: req.query.phone, email: req.query.email});
-            console.log('нашло 1')
             return res.json({
                 success: true,
                 orders,
             });
         }
-        if (req.query.email) {
+        else if (req.query.email) {
             const orders = await OrderModel.find({email: req.query.email});
             return res.json({
                 success: true,
