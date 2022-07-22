@@ -3,10 +3,10 @@ import ProductModel from '../models/Product.js';
 export const create = async (req, res) => {
     try {
         const store = req.body.store;
-        if (store !== 'mc' && store !== 'bk' && store !== 'taco') {
+        if (store !== 'McDonald\'s' && store !== 'BurgerKing' && store !== 'TacoBell') {
             return res.status(400).json({
                 success: false,
-                message: 'Недопустимое значение параметра, store может принимать только: mc, bk, taco',
+                message: 'Недопустимое значение параметра, store может принимать только: McDonald\'s, BurgerKing, TacoBell',
             });
         }
 
@@ -39,10 +39,10 @@ export const getAll = async (req, res) => {
         const store = req.query.store;
         console.log(store)
         if (store) {
-            if (store !== 'mc' && store !== 'bk' && store !== 'taco') {
+            if (store !== 'McDonald\'s' && store !== 'BurgerKing' && store !== 'TacoBell') {
                 return res.status(400).json({
                     success: false,
-                    message: 'Недопустимое значение параметра, store может принимать только: mc, bk, taco',
+                    message: 'Недопустимое значение параметра, store может принимать только: McDonald\'s, BurgerKing, TacoBell',
                 });
             }
             const products = await ProductModel.find({store});

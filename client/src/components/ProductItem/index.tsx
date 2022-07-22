@@ -19,7 +19,6 @@ const ProductItem: FC<productItemType> = ({productItem}) => {
 
     const refs = useMemo(() => productItem.map(() => React.createRef<HTMLInputElement>()), []);
 
-
     const addToCartShop = (item: productType, indexRef: number): void => {
         let cart:productType[] = JSON.parse(localStorage.getItem("ProductItems") || "");
 
@@ -56,13 +55,16 @@ const ProductItem: FC<productItemType> = ({productItem}) => {
                 <div className={st.product__item} key={item._id}>
                     <div className={st.product__item__block}>
                         <div className={st.product__item__block__image}>
-                            <img src={ter} alt="ter"/>
+                            <img src={`http://localhost:4000/images/${item.image}`} alt="ter"/>
                         </div>
                         <div className={st.product__item__block__title}>
                             {item.title}
                         </div>
                         <div className={st.product__item__block__weight}>
                             Вес: {item.weight} g
+                        </div>
+                        <div className={st.product__item__block__description}>
+                            {item.store}
                         </div>
                         <div className={st.product__item__block__description}>
                             {item.description}

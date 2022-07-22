@@ -42,9 +42,9 @@ const Shops: FC<ShopsType> = ({
             <div className={st.choose__block}>
                 <div className={st.choose__block_item}>
                     <div className={st.choose__block_item__image_wrapper}>
-                        <img src={mc} alt="mc"
+                        <img src={mc} alt="McDonald's"
                              className={cn(st.choose__block_item__image,
-                                 {"filterSelect":selectStore !== 'all' && selectStore !== 'mc'})}
+                                 {"filterSelect":selectStore !== 'all' && selectStore !== 'McDonald\'s'})}
                              onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=>{
                                  fetchProductsBrand(imgCLick);
                                  onHandlerCLick(imgCLick);
@@ -53,14 +53,14 @@ const Shops: FC<ShopsType> = ({
                     </div>
                     <h3 className={st.choose__block_item__title}>
                         <span className={cn(st.choose__block_item__light,
-                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'mc'})}>McDonald's</span>
+                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'McDonald\'s'})}>McDonald's</span>
                     </h3>
                 </div>
                 <div className={st.choose__block_item}>
                     <div className={st.choose__block_item__image_wrapper}>
-                        <img src={burgerKing} alt="bk"
+                        <img src={burgerKing} alt="BurgerKing"
                              className={cn(st.choose__block_item__image,
-                                 {"filterSelect": selectStore !== 'all' && selectStore !== 'bk'})}
+                                 {"filterSelect": selectStore !== 'all' && selectStore !== 'BurgerKing'})}
                              onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=> {
                                  fetchProductsBrand(imgCLick);
                                  onHandlerCLick(imgCLick);
@@ -68,14 +68,14 @@ const Shops: FC<ShopsType> = ({
                     </div>
                     <h3 className={st.choose__block_item__title}>
                         <span className={cn(st.choose__block_item__light,
-                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'bk'})}>Burger king</span>
+                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'BurgerKing'})}>Burger king</span>
                     </h3>
                 </div>
                 <div className={st.choose__block_item}>
                     <div className={st.choose__block_item__image_wrapper}>
-                        <img src={taco} alt="taco"
+                        <img src={taco} alt="TacoBell"
                              className={cn(st.choose__block_item__image,
-                                 {"filterSelect": selectStore !== 'all' && selectStore !== 'taco'})}
+                                 {"filterSelect": selectStore !== 'all' && selectStore !== 'TacoBell'})}
                              onClick={(imgCLick:React.MouseEvent<HTMLImageElement, MouseEvent>)=>{
                                  fetchProductsBrand(imgCLick);
                                  onHandlerCLick(imgCLick);
@@ -83,7 +83,7 @@ const Shops: FC<ShopsType> = ({
                     </div>
                     <h3 className={st.choose__block_item__title}>
                         <span className={cn(st.choose__block_item__light,
-                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'taco'})}>taco</span>
+                            {"backgroundSelect":selectStore !== 'all' && selectStore !== 'TacoBell'})}>taco</span>
                     </h3>
                 </div>
                 <div className={st.choose__block_item}>
