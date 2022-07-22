@@ -2,7 +2,8 @@ import React, {FC} from 'react';
 import {Link} from "react-router-dom";
 import st from './header.module.scss';
 
-
+/**
+ * Компонент шапки сайта*/
 const Header:FC = () => {
     return (
         <div className={st.container}>

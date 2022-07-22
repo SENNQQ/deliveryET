@@ -7,13 +7,21 @@ import {fetchAllProduct, fetchProductBrand} from "../../store/product/slice";
 import {useAppDispatch} from "../../store/hook";
 import cn from "classnames";
 
-// Сделал магазины в БД и получать их оттуда
-const Shops: FC<{
+type ShopsType = {
     onHandlerCLick: (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => void,
     onHandlerAllStore: () => void,
     store: string[],
     selectStore: string
-}> = ({onHandlerCLick, onHandlerAllStore, store, selectStore}) => {
+}
+
+// Сделал магазины в БД и получать их оттуда
+/**
+ * Компонент для отрисовки магазинов, фильтрация магазинов */
+const Shops: FC<ShopsType> = ({
+                                  onHandlerCLick,
+                                  onHandlerAllStore,
+                                  store,
+                                  selectStore}) => {
 
     const dispatch = useAppDispatch();
 
@@ -24,8 +32,6 @@ const Shops: FC<{
     const fetchProductsAll = () => {
         dispatch(fetchAllProduct());
     }
-
-
 
     return (
         <div className={[st.select__shops, st.select__shops_padding].join(' ')}>

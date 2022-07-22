@@ -14,9 +14,9 @@ const CountProduct: FC<countType> = ({countItem,
                                          catalog,
                                          refInput}) => {
 
-    const [count, setCount] = useState(countItem);
+    const [count, setCount] = useState<number>(countItem);
 
-    const handleAddOne = () => {
+    const handleAddOne = ():void => {
         if (count === 99)
             return
         if (changeCountItem !== undefined) {
@@ -25,7 +25,7 @@ const CountProduct: FC<countType> = ({countItem,
         setCount(count + 1);
     }
 
-    const handleSubtractOne = () => {
+    const handleSubtractOne = ():void => {
         if (count === 1)
             return
         if (changeCountItem !== undefined) {
@@ -34,7 +34,7 @@ const CountProduct: FC<countType> = ({countItem,
         setCount(count - 1);
     }
 
-    const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const handleOnChange = (e: React.FormEvent<HTMLInputElement>):void => {
         let newValue = e.currentTarget.value;
         if (parseInt(newValue) <= 1 || isNaN(parseInt(newValue))) {
             setCount(1);
@@ -51,17 +51,22 @@ const CountProduct: FC<countType> = ({countItem,
 
     return (
         <>
-            <span className={cn({cart_minus: catalog}, st.cart_symbol)}
-                  onClick={handleSubtractOne}>-</span>
+            <span
+                className={cn({cart_minus: catalog}, st.cart_symbol)}
+                onClick={handleSubtractOne}>
+                -
+            </span>
             <span className={cn({cart_input: catalog}, st.cart_count)}>
                                <input type="text"
                                       value={count}
                                       onChange={handleOnChange}
-                                      ref={refInput}
-                               />
+                                      ref={refInput}/>
             </span>
-            <span className={cn({cart_plus: catalog}, st.cart_symbol)}
-                  onClick={handleAddOne}>+</span>
+            <span
+                className={cn({cart_plus: catalog}, st.cart_symbol)}
+                onClick={handleAddOne}>
+                +
+            </span>
         </>
     );
 };

@@ -2,7 +2,6 @@ import OrderModel from '../models/Order.js';
 
 export const create = async (req, res) => {
     try {
-        console.log(req.body);
         const product = new OrderModel({
             name: req.body.name,
             phone: req.body.phone,
@@ -41,7 +40,6 @@ export const getAll = async (req, res) => {
         }
         if (req.query.email) {
             const orders = await OrderModel.find({email: req.query.email});
-            console.log('нашло 2')
             return res.json({
                 success: true,
                 orders,

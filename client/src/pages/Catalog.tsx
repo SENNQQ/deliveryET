@@ -12,7 +12,7 @@ const Catalog:FC = () => {
     const [selectStore, setSelectStore] = useState<string>('all');
     const store = React.useMemo(() => [...(products.map(n => n.store))], [ products ]);
 
-    const AllShop = () => {
+    const AllShop = ():void => {
         setSelectStore('all');
     };
 

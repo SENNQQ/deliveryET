@@ -2,18 +2,23 @@ import React, {FC, useEffect, useMemo} from 'react';
 import ter from '../../img/500_500_1649768756Монтажнаяобласть5.jpg';
 import CountProduct from "../CountProduct";
 import st from './productItem.module.scss';
-
 import {useAppDispatch} from "../../store/hook";
 import {addItem} from "../../store/shopCart/slice";
 import {productType} from "../../store/product/types";
 import {toast} from "react-toastify";
 
-const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
+type productItemType = {
+    productItem: productType[]
+}
+
+/**
+ * Компонент для отрисовки одного товара */
+const ProductItem: FC<productItemType> = ({productItem}) => {
 
     const dispatch = useAppDispatch();
 
     const refs = useMemo(() => productItem.map(() => React.createRef<HTMLInputElement>()), []);
-    // const shopCart = useAppSelector(state => state.shopCart.CartItems);
+
 
     const addToCartShop = (item: productType, indexRef: number): void => {
         let cart:productType[] = JSON.parse(localStorage.getItem("ProductItems") || "");
@@ -23,9 +28,9 @@ const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
             dispatch(addItem(item));
             toast.success('Товар добавлен в корзину');
         }
+
         else {
             let checkShop = checkCartShop(item, cart);
-
             if (!(checkShop[0])) {
                 toast.success('Товар добавлен в корзину');
                 item = Object.assign({}, item, {count: parseInt(refs[indexRef].current!.value)});
@@ -73,7 +78,8 @@ const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
                             </div>
                         </div>
                         <div className="product__item_btn_wrapper product__item_zeroingStyle">
-                            <div className={st.product__item_btn} onClick={() => addToCartShop(item, index)}>
+                            <div className={st.product__item_btn}
+                                 onClick={() => addToCartShop(item, index)}>
                                 <span>Добавить в корзину</span>
                             </div>
                         </div>

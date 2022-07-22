@@ -1,0 +1,38 @@
+.cart_check{
+  padding: 50px 70px 70px;
+  border: 1px solid #c7c7ba;
+  border-left: 0;
+  border-right: 0;
+  background: #fffaf4;
+  border-radius: 5px;
+
+  &__title{
+    margin: 0 0 32px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &_list{
+    border-bottom: 2px dotted #cdc9c4;
+
+    li{
+      padding: 8px 0 9px;
+      overflow: hidden;
+      font-size: 16px;
+      border-top: 2px dotted #cdc9c4;
+    }
+  }
+
+  &__left{
+    float: left;
+    font-weight: 700;
+  }
+
+  &__right{
+    float: right;
+  }
+
+  .orange{
+    color: #FF9126;
+  }
+}

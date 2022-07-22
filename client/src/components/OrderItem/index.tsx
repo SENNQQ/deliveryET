@@ -8,21 +8,26 @@ import {changeCountItem, deleteItem} from "../../store/shopCart/slice";
 import {useAppDispatch} from "../../store/hook";
 import {receivingForm} from "../../pages/ShopCart";
 
-
-const OrderItem: FC<{
+type orderItemType = {
     orderItem: shopCartItem[],
     idOrder?: string,
     HandlerGetData?: (item: receivingForm) => void,
     HandlerItem?: receivingForm
-}> = ({orderItem, idOrder, HandlerGetData, HandlerItem}) => {
+}
+
+/**
+ * Компонент для отрисовки одного товара заказа */
+const OrderItem: FC<orderItemType> = ({
+                                          orderItem,
+                                          idOrder,
+                                          HandlerGetData,
+                                          HandlerItem}) => {
 
     const dispatch = useAppDispatch();
 
     const deleteItemFromCart = (idItem: string): void => {
         dispatch(deleteItem(idItem));
-    }
-
-    console.log(HandlerGetData);
+    };
 
     const changeCountItemCart = (idItem: shopCartItem, newCount: number): void => {
         dispatch(changeCountItem([idItem, newCount]));
@@ -30,8 +35,8 @@ const OrderItem: FC<{
 
     return (
         <>
-            {idOrder && <div className={cn(st.content_order__row__subtitle, "orderSearchTitle")}>Идентификатор
-                заказа: {idOrder}</div>}
+            {idOrder && <div className={cn(st.content_order__row__subtitle, "orderSearchTitle")}>
+                Идентификатор заказа: {idOrder}</div>}
             {orderItem.map((item, index) => (
                 <div key={item._id}>
                     <div className={cn(st.content_order__row, {"orderSearchGrid": idOrder})}>
@@ -47,13 +52,14 @@ const OrderItem: FC<{
                         <div className={cn(st.content_order__row__price, st.content_order__row_flex_center)}>
                             {item.price * item.count} ₴
                         </div>
-                        <div
-                            className={cn(st.content_order__row__minus_plus_number, st.content_order__row_flex_center)}>
+                        <div className={cn(st.content_order__row__minus_plus_number, st.content_order__row_flex_center)}>
                             {idOrder ?
                                 <div className={cn(st.content_order__row__subtitle, "orderSearchTitle")}>
                                     Количество: {item.count}
-                                </div> : <CountProduct countItem={item.count}
-                                                       changeCountItem={(newCount) => changeCountItemCart(item, newCount)}/>
+                                </div>
+                                :
+                                <CountProduct countItem={item.count}
+                                              changeCountItem={(newCount) => changeCountItemCart(item, newCount)}/>
                             }
 
                         </div>
@@ -70,8 +76,6 @@ const OrderItem: FC<{
                                 <span className="delete" onClick={() => deleteItemFromCart(item._id)}></span>
                             </div>
                         }
-
-
                     </div>
                     <hr/>
                 </div>

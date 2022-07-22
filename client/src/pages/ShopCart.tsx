@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import '../style/shopCart.scss';
 import {SubmitHandler, useForm} from "react-hook-form";
 import cn from "classnames";
@@ -8,6 +8,7 @@ import clear from "../img/cart-empty.png";
 import {shopCartItem} from "../store/shopCart/types";
 import axios from "../axios";
 import {toast} from "react-toastify";
+import Check from "../components/Check";
 
 export type receivingForm = {
     _id?:string;
@@ -23,7 +24,7 @@ export type receivingForm = {
     cart:shopCartItem[];
 }
 
-const ShopCart = () => {
+const ShopCart:FC = () => {
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm<receivingForm>();
 
@@ -277,37 +278,9 @@ const ShopCart = () => {
                                         </button>
                                     </div>
                                 </form>
-
                             </div>
                             <div className="content_receiving_check">
-
-                                {/*Компонент*/}
-                                <div className="cart_check">
-                                    <div className="cart_check__title">Ваш чек:</div>
-                                    <ul className="cart_check_list">
-                                        <li>
-                                            <div className="cart_check__left">Всего на сумму</div>
-                                            <div className="cart_check__right">
-                                                <span>
-                                                    {cartItem.reduce((total, item) => {
-                                                        return total + item.count * item.price
-                                                    }, 0)}
-                                                </span> ₴
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="cart_check__left orange">К оплате:</div>
-                                            <div className="cart_check__right orange">
-                                                <span>
-                                                    {cartItem.reduce((total, item) => {
-                                                        return total + item.count * item.price
-                                                    }, 0)}
-                                                </span> ₴
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
+                                <Check cartItem={cartItem}/>
                             </div>
                         </div>
                     </>

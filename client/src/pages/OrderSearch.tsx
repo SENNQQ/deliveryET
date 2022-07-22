@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import cn from "classnames";
 import '../style/orderSearch.scss';
@@ -13,7 +13,7 @@ type searchOrderForm = {
     phone: string
 }
 
-const OrderSearch = () => {
+const OrderSearch:FC = () => {
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm<searchOrderForm>();
 
@@ -28,11 +28,16 @@ const OrderSearch = () => {
                     email: dataForm.email,
                 }
             });
-            if (data.success) {
+            if (data.success && data.orders.length != 0) {
                 reset();
                 toast.success(data.message);
                 setOrderSearch(data.orders);
-            } else {
+            }
+            else if(data.orders.length == 0){
+                reset();
+                toast.info('Заказ не найден');
+            }
+            else{
                 toast.success(data.message);
             }
 
@@ -46,9 +51,6 @@ const OrderSearch = () => {
     const HandlerSelectData = (item:receivingForm):void => {
         setSelectItemData(item);
     }
-
-
-
 
     return (
         <div className="content">
