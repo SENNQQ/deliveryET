@@ -7,10 +7,10 @@ import Order from "../components/Order";
 import clear from "../img/cart-empty.png";
 import {shopCartItem} from "../store/shopCart/types";
 import axios from "../axios";
-import {AxiosError} from "axios";
 import {toast} from "react-toastify";
 
 export type receivingForm = {
+    _id?:string;
     name: string;
     phone: string;
     email: string;

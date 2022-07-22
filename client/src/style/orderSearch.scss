@@ -14,3 +14,31 @@
   margin: 0;
   font-weight: bold;
 }
+
+.content_foundData{
+  display: grid;
+  grid-gap: 15px;
+}
+
+.content_SearchOrder{
+  display: grid;
+  grid-template: 1fr/1fr;
+  grid-gap: 25px;
+  width: 100%;
+}
+
+.orderSearchTitle{
+  font-size: 17px!important;
+  margin-bottom: 10px;
+}
+
+.orderSearchGrid {
+  grid-template: 1fr/max-content 1fr 10% 15% 10% !important;
+}
+
+.content_gridSearchForm{
+  display: grid;
+  grid-template: 1fr/1fr;
+  height: max-content;
+  grid-gap: 50px;
+}

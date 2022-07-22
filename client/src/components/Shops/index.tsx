@@ -25,6 +25,8 @@ const Shops: FC<{
         dispatch(fetchAllProduct());
     }
 
+
+
     return (
         <div className={[st.select__shops, st.select__shops_padding].join(' ')}>
             <div className={st.select__shops_title}>
@@ -79,7 +81,7 @@ const Shops: FC<{
                     </h3>
                 </div>
                 <div className={st.choose__block_item}>
-                    <h3 className={st.choose__block_item__title}  onClick={(e)=>{
+                    <h3 className={st.choose__block_item__title}  onClick={()=>{
                         fetchProductsAll();
                         onHandlerAllStore();
                     }}>

@@ -16,7 +16,7 @@ const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
     // const shopCart = useAppSelector(state => state.shopCart.CartItems);
 
     const addToCartShop = (item: productType, indexRef: number): void => {
-        let cart = JSON.parse(localStorage.getItem("ProductItems") || "");
+        let cart:productType[] = JSON.parse(localStorage.getItem("ProductItems") || "");
 
         if (cart.length == 0) {
             item = Object.assign({}, item, {count: parseInt(refs[indexRef].current!.value)});
@@ -31,7 +31,7 @@ const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
                 item = Object.assign({}, item, {count: parseInt(refs[indexRef].current!.value)});
                 dispatch(addItem(item));
             } else {
-                toast.error('В корзине может быть товар только одной компании');
+                toast.error(`В корзине может быть товар только компании ${cart[0].store}`);
             }
         }
     }
