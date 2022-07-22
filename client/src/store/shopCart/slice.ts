@@ -28,13 +28,13 @@ const shopCart = createSlice({
               localStorage.setItem("ProductItems", JSON.stringify(state.CartItems));
            }
         },
-        deleteItem(state, {payload}: PayloadAction<number>) {
+        deleteItem(state, {payload}: PayloadAction<string>) {
             let cartItem = JSON.parse(localStorage.getItem("ProductItems") || "");
-            cartItem = cartItem.filter((item:any)=>parseInt(item.id)!==payload);
+            cartItem = cartItem.filter((item:any)=>item._id!==payload);
             localStorage.setItem('ProductItems', JSON.stringify(cartItem));
             return {
                 ...state,
-                CartItems: [...state.CartItems].filter((item) => parseInt(item._id) !== payload)
+                CartItems: [...state.CartItems].filter((item) => item._id !== payload)
             };
         },
         changeCountItem(state, {payload}: PayloadAction<[shopCartItem, number]>) {

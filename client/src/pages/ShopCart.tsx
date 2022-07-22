@@ -8,8 +8,7 @@ import clear from "../img/cart-empty.png";
 import {shopCartItem} from "../store/shopCart/types";
 import axios from "../axios";
 import {AxiosError} from "axios";
-import {toast, ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
 export type receivingForm = {
     name: string;
@@ -39,8 +38,7 @@ const ShopCart = () => {
                 toast.success(data.message);
             }
         } catch (e) {
-            const error = e as AxiosError<{ msg: string, param: 'email' | 'phone' | 'address' | 'studyPlace' | 'facebook' | 'instagram' | 'social' }[]>;
-            console.log(error);
+            console.log(e);
         }
     };
 
@@ -317,17 +315,6 @@ const ShopCart = () => {
                 }
 
             </div>
-            <ToastContainer
-                position="top-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
         </div>
     );
 };

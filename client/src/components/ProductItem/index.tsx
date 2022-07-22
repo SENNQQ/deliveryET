@@ -6,6 +6,7 @@ import st from './productItem.module.scss';
 import {useAppDispatch} from "../../store/hook";
 import {addItem} from "../../store/shopCart/slice";
 import {productType} from "../../store/product/types";
+import {toast} from "react-toastify";
 
 const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
 
@@ -15,8 +16,28 @@ const ProductItem: FC<{ productItem: productType[] }> = ({productItem}) => {
     // const shopCart = useAppSelector(state => state.shopCart.CartItems);
 
     const addToCartShop = (item: productType, indexRef: number): void => {
-        item = Object.assign({}, item, {count: parseInt(refs[indexRef].current!.value)});
-        dispatch(addItem(item));
+        let cart = JSON.parse(localStorage.getItem("ProductItems") || "");
+
+        if (cart.length == 0) {
+            item = Object.assign({}, item, {count: parseInt(refs[indexRef].current!.value)});
+            dispatch(addItem(item));
+            toast.success('Товар добавлен в корзину');
+        }
+        else {
+            let checkShop = checkCartShop(item, cart);
+
+            if (!(checkShop[0])) {
+                toast.success('Товар добавлен в корзину');
+                item = Object.assign({}, item, {count: parseInt(refs[indexRef].current!.value)});
+                dispatch(addItem(item));
+            } else {
+                toast.error('В корзине может быть товар только одной компании');
+            }
+        }
+    }
+
+    const checkCartShop = (item: productType, cartItem: productType[]): boolean[] => {
+        return cartItem.map((cartItem) => cartItem.store != item.store);
     }
 
     useEffect(() => {

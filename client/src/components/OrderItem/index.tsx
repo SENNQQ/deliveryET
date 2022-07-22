@@ -12,7 +12,7 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
 
     const dispatch = useAppDispatch();
 
-    const deleteItemFromCart = (idItem:number):void =>{
+    const deleteItemFromCart = (idItem:string):void =>{
         dispatch(deleteItem(idItem));
     }
 
@@ -43,7 +43,7 @@ const OrderItem: FC<{ orderItem: shopCartItem[] }> = ({orderItem}) => {
                                           changeCountItem={(newCount)=>changeCountItemCart(item, newCount)}/>
                         </div>
                         <div className={cn(st.content_order__row__delete, st.content_order__row_flex_center)}>
-                            <span className="delete" onClick={()=>deleteItemFromCart(parseInt(item._id))}></span>
+                            <span className="delete" onClick={()=>deleteItemFromCart(item._id)}></span>
                         </div>
                     </div>
                     <hr/>
